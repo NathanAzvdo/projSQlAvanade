@@ -4,7 +4,6 @@
 --comment: Remove columns title, description, created_at, updated_at from Board
 
 ALTER TABLE board
-DROP COLUMN title,
 DROP COLUMN description,
 DROP COLUMN created_at,
 DROP COLUMN updated_at;
