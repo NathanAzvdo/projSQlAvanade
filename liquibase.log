@@ -1,51 +1,51 @@
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Reading resource: db/changelog/migrations/db.changelog-01.sql
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Reading resource: db/changelog/migrations/db.changelog-02.sql
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Creating database history table with name: sql_project.DATABASECHANGELOG
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Reading from sql_project.DATABASECHANGELOG
-mar. 27, 2025 7:18:45 PM liquibase.lockservice
+mar. 27, 2025 8:07:20 PM liquibase.lockservice
 INFO: Successfully acquired change log lock
-mar. 27, 2025 7:18:45 PM liquibase.command
-INFO: Using deploymentId: 3113925495
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.command
+INFO: Using deploymentId: 3116840583
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Reading from sql_project.DATABASECHANGELOG
 Running Changeset: db/changelog/migrations/db.changelog-01.sql::1::junior
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Custom SQL executed
-mar. 27, 2025 7:18:45 PM liquibase.changelog
-INFO: ChangeSet db/changelog/migrations/db.changelog-01.sql::1::junior ran successfully in 35ms
+mar. 27, 2025 8:07:20 PM liquibase.changelog
+INFO: ChangeSet db/changelog/migrations/db.changelog-01.sql::1::junior ran successfully in 40ms
 Running Changeset: db/changelog/migrations/db.changelog-02.sql::fix_board::junior
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Custom SQL executed
-mar. 27, 2025 7:18:45 PM liquibase.changelog
-INFO: ChangeSet db/changelog/migrations/db.changelog-02.sql::fix_board::junior ran successfully in 56ms
+mar. 27, 2025 8:07:20 PM liquibase.changelog
+INFO: ChangeSet db/changelog/migrations/db.changelog-02.sql::fix_board::junior ran successfully in 93ms
 Running Changeset: db/changelog/migrations/db.changelog-02.sql::board_id_to_bigint::junior
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Custom SQL executed
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: ChangeSet db/changelog/migrations/db.changelog-02.sql::board_id_to_bigint::junior ran successfully in 13ms
 Running Changeset: db/changelog/migrations/db.changelog-02.sql::2::junior
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Custom SQL executed
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: ChangeSet db/changelog/migrations/db.changelog-02.sql::2::junior ran successfully in 33ms
 Running Changeset: db/changelog/migrations/db.changelog-02.sql::3::junior
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Custom SQL executed
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: ChangeSet db/changelog/migrations/db.changelog-02.sql::3::junior ran successfully in 33ms
 Running Changeset: db/changelog/migrations/db.changelog-02.sql::4::junior
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Custom SQL executed
-mar. 27, 2025 7:18:45 PM liquibase.changelog
-INFO: ChangeSet db/changelog/migrations/db.changelog-02.sql::4::junior ran successfully in 36ms
+mar. 27, 2025 8:07:20 PM liquibase.changelog
+INFO: ChangeSet db/changelog/migrations/db.changelog-02.sql::4::junior ran successfully in 46ms
 Running Changeset: db/changelog/migrations/db.changelog-02.sql::5::junior
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: Custom SQL executed
-mar. 27, 2025 7:18:45 PM liquibase.changelog
+mar. 27, 2025 8:07:20 PM liquibase.changelog
 INFO: ChangeSet db/changelog/migrations/db.changelog-02.sql::5::junior ran successfully in 38ms
 
 UPDATE SUMMARY
@@ -55,24 +55,24 @@ Filtered out:                 0
 -------------------------------
 Total change sets:            7
 
-mar. 27, 2025 7:18:45 PM liquibase.util
+mar. 27, 2025 8:07:20 PM liquibase.util
 INFO: UPDATE SUMMARY
-mar. 27, 2025 7:18:45 PM liquibase.util
+mar. 27, 2025 8:07:20 PM liquibase.util
 INFO: Run:                          7
-mar. 27, 2025 7:18:45 PM liquibase.util
+mar. 27, 2025 8:07:20 PM liquibase.util
 INFO: Previously run:               0
-mar. 27, 2025 7:18:45 PM liquibase.util
+mar. 27, 2025 8:07:20 PM liquibase.util
 INFO: Filtered out:                 0
-mar. 27, 2025 7:18:45 PM liquibase.util
+mar. 27, 2025 8:07:20 PM liquibase.util
 INFO: -------------------------------
-mar. 27, 2025 7:18:45 PM liquibase.util
+mar. 27, 2025 8:07:20 PM liquibase.util
 INFO: Total change sets:            7
-mar. 27, 2025 7:18:45 PM liquibase.util
+mar. 27, 2025 8:07:20 PM liquibase.util
 INFO: Update summary generated
-mar. 27, 2025 7:18:45 PM liquibase.command
+mar. 27, 2025 8:07:20 PM liquibase.command
 INFO: Update command completed successfully.
 Liquibase: Update has been successful. Rows affected: 7
-mar. 27, 2025 7:18:45 PM liquibase.lockservice
+mar. 27, 2025 8:07:20 PM liquibase.lockservice
 INFO: Successfully released change log lock
-mar. 27, 2025 7:18:45 PM liquibase.command
+mar. 27, 2025 8:07:20 PM liquibase.command
 INFO: Command execution complete
