@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws SQLException {
         try(var connection = ConnectionConfig.getConnection()) {
+            System.out.println("Iniciano a migração...");
             new MigrationStrategy(connection).executeMigration();
         }
     }
