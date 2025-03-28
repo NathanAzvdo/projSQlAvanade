@@ -15,4 +15,5 @@ public class BoardColumn {
     private Board board;
 
 
+
 }
