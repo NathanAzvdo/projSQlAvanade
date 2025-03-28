@@ -16,4 +16,6 @@ public class Card {
     private OffsetDateTime createdAt;
     private Status status;
     private BoardColumn boardColumn;
+
+
 }

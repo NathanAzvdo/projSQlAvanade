@@ -21,10 +21,10 @@ public class BlockDAO {
         this.connection = connectionConfig.getConnection();
     }
 
-    public void blockCard(int cardId, String cause) throws SQLException {
+    public void blockCard(Long cardId, String cause) throws SQLException {
         String sql = "INSERT INTO block (card_id, cause, unblock_in) VALUES (?, ?, NULL)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, cardId);
+            stmt.setLong(1, cardId);
             stmt.setString(2, cause);
             stmt.executeUpdate();
         } catch (java.sql.SQLException e) {
@@ -32,10 +32,10 @@ public class BlockDAO {
         }
     }
 
-    public void unblockCard(int cardId, String cause) throws SQLException {
+    public void unblockCard(Long cardId, String cause) throws SQLException {
         String sql = "UPDATE block SET unblock_in = NOW() WHERE card_id = ? AND unblock_in IS NULL";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, cardId);
+            stmt.setLong(1, cardId);
             stmt.executeUpdate();
         } catch (java.sql.SQLException e) {
             throw new RuntimeException(e);
@@ -94,4 +94,5 @@ public class BlockDAO {
 
         return blocks;
     }
+
 }

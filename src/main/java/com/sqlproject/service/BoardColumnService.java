@@ -1,6 +1,6 @@
 package com.sqlproject.service;
 
-import com.sqlproject.exception.BoardColumnNotFoundException;
+import com.sqlproject.exceptions.BoardColumnNotFoundException;
 import com.sqlproject.persistence.entity.BoardColumn;
 
 import java.util.List;

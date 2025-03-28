@@ -1,5 +1,5 @@
 package com.sqlproject.service;
-import com.sqlproject.exception.BoardNotFoundException;
+import com.sqlproject.exceptions.BoardNotFoundException;
 import com.sqlproject.persistence.dao.BoardColumnDAO;
 import com.sqlproject.persistence.dao.BoardDAO;
 import com.sqlproject.persistence.entity.Board;

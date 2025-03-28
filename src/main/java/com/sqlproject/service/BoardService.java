@@ -1,6 +1,6 @@
 package com.sqlproject.service;
 
-import com.sqlproject.exception.BoardNotFoundException;
+import com.sqlproject.exceptions.BoardNotFoundException;
 import com.sqlproject.persistence.entity.Board;
 
 import java.sql.SQLException;
