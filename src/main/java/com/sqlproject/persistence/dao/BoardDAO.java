@@ -148,9 +148,4 @@ public class BoardDAO {
         }
     }
 
-    public void close() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
-        }
-    }
 }

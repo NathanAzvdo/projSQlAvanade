@@ -43,7 +43,4 @@ public class BoardService {
         return boardDAO.updateBoard(board);
     }
 
-    public void close() throws SQLException {
-        boardDAO.close();
-    }
 }
