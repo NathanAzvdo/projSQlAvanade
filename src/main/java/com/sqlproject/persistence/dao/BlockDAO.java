@@ -12,7 +12,8 @@ public class BlockDAO {
     private final Connection connection;
 
     public BlockDAO() throws SQLException {
-        this.connection = ConnectionConfig.getConnection();
+        ConnectionConfig connectionConfig = new ConnectionConfig();
+        this.connection = connectionConfig.getConnection();
     }
 
     public void blockCard(int cardId, String cause) {

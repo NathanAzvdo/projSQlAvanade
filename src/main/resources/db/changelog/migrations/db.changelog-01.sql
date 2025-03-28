@@ -4,7 +4,7 @@
 
 create table board (
     id serial primary key,
-    nome varchar(255) not null,
+    name varchar(255) not null,
     description text,
     created_at timestamp not null default now(),
     updated_at timestamp
