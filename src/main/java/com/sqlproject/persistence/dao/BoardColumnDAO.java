@@ -2,16 +2,13 @@ package com.sqlproject.persistence.dao;
 
 import com.sqlproject.persistence.config.ConnectionConfig;
 import com.sqlproject.persistence.entity.BoardColumn;
-import com.sqlproject.persistence.entity.Card;
-import com.sqlproject.persistence.entity.CardHistory;
-import com.sqlproject.persistence.entity.Block;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BoardColumnDAO {
@@ -22,13 +19,30 @@ public class BoardColumnDAO {
         this.connection = connectionConfig.getConnection();
     }
 
+
     public void createColumn(BoardColumn column) throws SQLException {
-        String sql = "INSERT INTO board_column (name, board_id, column_order) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO board_column (name, board_id, column_order, kind) VALUES (?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, column.getName());
             stmt.setLong(2, column.getBoard().getId());
             stmt.setInt(3, column.getOrder());
+            stmt.setString(4, column.getKind());
             stmt.executeUpdate();
+        }
+    }
+
+    public void createColumns(List<BoardColumn> columns) throws SQLException {
+        String sql = "INSERT INTO board_column (name, board_id, column_order, kind) VALUES (?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            for (BoardColumn column : columns) {
+                stmt.setString(1, column.getName());
+                stmt.setLong(2, column.getBoard().getId());
+                stmt.setInt(3, column.getOrder());
+                stmt.setString(4, column.getKind());
+                stmt.addBatch();
+            }
+            stmt.executeBatch();
         }
     }
 
@@ -46,7 +60,7 @@ public class BoardColumnDAO {
                             rs.getString("name"),
                             rs.getInt("column_order"),
                             rs.getString("kind"),
-                            null // board será null, você pode adicionar a lógica de buscar o board se necessário
+                            null
                     ));
                 }
             }

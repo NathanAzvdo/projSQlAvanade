@@ -14,4 +14,6 @@ public interface BoardColumnService {
     void updateColumnOrder(Long columnId, int newOrder) throws BoardColumnNotFoundException, IllegalArgumentException;
 
     void deleteColumn(Long columnId) throws BoardColumnNotFoundException;
+
+
 }

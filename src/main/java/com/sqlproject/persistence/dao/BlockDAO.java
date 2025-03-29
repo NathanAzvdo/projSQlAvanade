@@ -57,7 +57,6 @@ public class BlockDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    // Cria o Card
                     Card card = new Card(
                             rs.getLong("card_id"),
                             rs.getString("card_title"),
@@ -66,8 +65,6 @@ public class BlockDAO {
                             null, // status
                             null  // boardColumn
                     );
-
-                    // Cria a BoardColumn
                     BoardColumn boardColumn = new BoardColumn(
                             rs.getLong("board_column_id"),
                             rs.getString("board_column_name"),
@@ -75,8 +72,6 @@ public class BlockDAO {
                             rs.getString("kind"),
                             null // board
                     );
-
-                    // Cria o Block
                     blocks.add(new Block(
                             rs.getLong("id"),
                             card,

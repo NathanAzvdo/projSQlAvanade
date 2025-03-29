@@ -25,7 +25,7 @@ public class BoardDAO {
             throw new IllegalArgumentException("Nome do board não pode ser nulo ou vazio");
         }
 
-        String sql = "INSERT INTO board (nome) VALUES (?)";
+        String sql = "INSERT INTO board (name) VALUES (?)";
 
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, board.getName());
@@ -63,7 +63,7 @@ public class BoardDAO {
                     Board board = new Board();
                     board.setId(resultSet.getLong("id"));
 
-                    String nome = resultSet.getString("nome");
+                    String nome = resultSet.getString("name");
                     if (nome == null || nome.trim().isEmpty()) {
                         throw new SQLException("Nome do board não pode ser nulo ou vazio");
                     }
@@ -79,7 +79,7 @@ public class BoardDAO {
     }
 
     public List<Board> getAllBoards() throws SQLException {
-        String sql = "SELECT * FROM board ORDER BY nome";
+        String sql = "SELECT * FROM board ORDER BY name";
         List<Board> boards = new ArrayList<>();
 
         try (PreparedStatement statement = connection.prepareStatement(sql);
@@ -88,7 +88,7 @@ public class BoardDAO {
             while (resultSet.next()) {
                 Board board = new Board();
                 board.setId(resultSet.getLong("id"));
-                board.setName(resultSet.getString("nome"));
+                board.setName(resultSet.getString("name"));
 
                 boards.add(board);
             }
@@ -130,7 +130,7 @@ public class BoardDAO {
             throw new IllegalArgumentException("Nome do board não pode ser nulo ou vazio");
         }
 
-        String sql = "UPDATE board SET nome = ? WHERE id = ?";
+        String sql = "UPDATE board SET name = ? WHERE id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, board.getName());

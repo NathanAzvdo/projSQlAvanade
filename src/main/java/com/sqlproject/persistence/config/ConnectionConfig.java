@@ -13,7 +13,6 @@ public class ConnectionConfig implements AutoCloseable {
                 System.getenv("DB_USER"),
                 System.getenv("DB_PASSWORD")
         );
-        this.connection.setAutoCommit(false);
     }
 
     public Connection getConnection() {
