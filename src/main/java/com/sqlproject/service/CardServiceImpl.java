@@ -18,16 +18,16 @@ public class CardServiceImpl implements CardService {
 
     private final CardDAO cardDAO;
     private final BoardColumnDAO boardColumnDAO;
-    private final CardHistoryDAO cardHistoryDAO;
     private final BoardService boardService;
     private final BlockDAO blockDAO;
+    private final CardHistoryDAO cardHistoryDAO;
 
-    public CardServiceImpl(CardDAO cardDAO, BoardColumnDAO boardColumnDAO, CardHistoryDAO cardHistoryDAO, BoardService boardService, BlockDAO blockDAO) {
-        this.cardDAO = cardDAO;
-        this.boardColumnDAO = boardColumnDAO;
-        this.cardHistoryDAO = cardHistoryDAO;
-        this.boardService = boardService;
-        this.blockDAO = blockDAO;
+    public CardServiceImpl() throws SQLException {
+        this.cardDAO = new CardDAO();
+        this.boardColumnDAO = new BoardColumnDAO();
+        this.cardHistoryDAO = new CardHistoryDAO();
+        this.boardService = new BoardServiceImpl();
+        this.blockDAO = new BlockDAO();
     }
 
     @Override
@@ -37,10 +37,12 @@ public class CardServiceImpl implements CardService {
         }
 
         Board board = boardService.getBoardById(boardId).orElseThrow(() -> new BoardNotFoundException("Board com ID " + boardId + " não encontrado."));
+
+        BoardColumnServiceImpl boardColumnService = new BoardColumnServiceImpl();
+        List<BoardColumn> ids = boardColumnService.getColumnsByBoardId(boardId);
         BoardColumn initialColumn = boardColumnDAO.getColumnByBoardId(boardId).stream()
-                .filter(column -> "Inicial".equals(column.getName())) // Assumindo que a coluna inicial sempre se chama "Inicial"
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("Coluna 'Inicial' não encontrada para o board " + boardId));
+                .orElseThrow(() -> new IllegalStateException("Nenhuma coluna encontrada no board! " + boardId));
 
         card.setBoardColumn(initialColumn);
         cardDAO.createCard(card);

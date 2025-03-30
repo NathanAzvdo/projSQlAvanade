@@ -3,6 +3,7 @@ package com.sqlproject.ui;
 import com.sqlproject.exceptions.BoardNotFoundException;
 import com.sqlproject.persistence.entity.Board;
 import com.sqlproject.service.BoardService;
+import com.sqlproject.service.BoardServiceImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,9 +14,9 @@ public class BoardUI {
     private final Scanner scanner;
     private final BoardService boardService;
 
-    public BoardUI(BoardService boardService) {
-        this.scanner = new Scanner(System.in);
-        this.boardService = boardService;
+    public BoardUI(Scanner scanner) throws SQLException {
+        this.scanner = scanner;
+        this.boardService = new BoardServiceImpl();
     }
 
     public void start() {
@@ -41,10 +42,10 @@ public class BoardUI {
                         break;
                     case 0:
                         running = false;
-                        System.out.println("Encerrando aplicação...");
+                        System.out.println("Voltando ao menu principal...");
                         break;
                     default:
-                        System.out.println("Opção inválida! Tente novamente.");
+                        System.out.println("Opção inválida. Tente novamente.");
                 }
             } catch (SQLException e) {
                 System.out.println("Erro de banco de dados: " + e.getMessage());
@@ -56,7 +57,6 @@ public class BoardUI {
             }
         }
 
-        scanner.close();
     }
 
     private void displayMainMenu() {

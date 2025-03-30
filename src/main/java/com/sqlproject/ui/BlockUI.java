@@ -3,6 +3,7 @@ package com.sqlproject.ui;
 import com.sqlproject.exceptions.CardNotFoundException;
 import com.sqlproject.persistence.entity.Block;
 import com.sqlproject.service.BlockService;
+import com.sqlproject.service.BlockServiceImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,9 +13,9 @@ public class BlockUI {
     private final BlockService blockService;
     private final Scanner scanner;
 
-    public BlockUI(BlockService blockService) {
-        this.blockService = blockService;
-        this.scanner = new Scanner(System.in);
+    public BlockUI(Scanner scanner) throws SQLException {
+        this.blockService = new BlockServiceImpl();
+        this.scanner = scanner;
     }
 
     public void start() {
@@ -50,7 +51,7 @@ public class BlockUI {
                 scanner.nextLine();
             }
         }
-        scanner.close();
+
     }
 
     private void displayMenu() {
@@ -111,9 +112,9 @@ public class BlockUI {
                 System.out.println("-------------------------------------------------------");
 
                 for (Block block : blockHistory) {
-                    System.out.printf("%-5d %-20d %-30s %-30s %-10s%n",
+                    System.out.printf("%-5d %-20s %-30s %-30s %-10s%n",
                             block.getId(),
-                            block.getCard(),
+                            block.getCard().toString(),
                             block.getBlockIn(),
                             block.getUnblockIn() != null ? block.getUnblockIn() : "Ainda bloqueado",
                             block.getBlockCause());

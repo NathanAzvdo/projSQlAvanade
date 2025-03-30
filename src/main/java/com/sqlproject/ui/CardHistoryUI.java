@@ -1,19 +1,20 @@
 package com.sqlproject.ui;
 
 import com.sqlproject.persistence.entity.CardHistory;
-import com.sqlproject.service.CardHistoryService;
+import com.sqlproject.service.CardHistoryServiceImpl;
+
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
 public class CardHistoryUI {
-    private final CardHistoryService cardHistoryService;
+    private final CardHistoryServiceImpl cardHistoryService;
     private final Scanner scanner;
 
-    public CardHistoryUI(CardHistoryService cardHistoryService) {
-        this.cardHistoryService = cardHistoryService;
-        this.scanner = new Scanner(System.in);
+    public CardHistoryUI(Scanner scanner) throws SQLException {
+        this.cardHistoryService = new CardHistoryServiceImpl();
+        this.scanner = scanner;
     }
 
     public void start() {
@@ -69,9 +70,9 @@ public class CardHistoryUI {
                 System.out.println("------------------------------------------------------------------");
 
                 for (CardHistory entry : history) {
-                    System.out.printf("%-5d %-20d %-25s %-25s %-20s%n",
+                    System.out.printf("%-5d %-20s %-30s %-30s %-10s%n",
                             entry.getId(),
-                            entry.getCard(),
+                            entry.getCard().toString(),
                             entry.getEnteredAt(),
                             entry.getBoardColumn(),
                             entry.getExitedAt());

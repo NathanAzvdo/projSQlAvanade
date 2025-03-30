@@ -4,8 +4,11 @@ import com.sqlproject.exceptions.BoardColumnNotFoundException;
 import com.sqlproject.persistence.entity.Board;
 import com.sqlproject.persistence.entity.BoardColumn;
 import com.sqlproject.service.BoardColumnService;
+import com.sqlproject.service.BoardColumnServiceImpl;
 import com.sqlproject.service.BoardService;
+import com.sqlproject.service.BoardServiceImpl;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,10 +17,10 @@ public class BoardColumnUI {
     private final BoardService boardService; // Assumindo que você tem um BoardService para buscar informações do board
     private final Scanner scanner;
 
-    public BoardColumnUI(BoardColumnService boardColumnService, BoardService boardService) {
-        this.boardColumnService = boardColumnService;
-        this.boardService = boardService;
-        this.scanner = new Scanner(System.in);
+    public BoardColumnUI(Scanner scanner) throws SQLException {
+        this.boardColumnService = new BoardColumnServiceImpl();
+        this.boardService = new BoardServiceImpl();
+        this.scanner = scanner;
     }
 
     public void start() {

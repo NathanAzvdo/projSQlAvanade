@@ -10,8 +10,8 @@ public class CardHistoryServiceImpl implements CardHistoryService {
 
     private final CardHistoryDAO cardHistoryDAO;
 
-    public CardHistoryServiceImpl(CardHistoryDAO cardHistoryDAO) {
-        this.cardHistoryDAO = cardHistoryDAO;
+    public CardHistoryServiceImpl() throws SQLException {
+        this.cardHistoryDAO = new CardHistoryDAO();
     }
 
     @Override

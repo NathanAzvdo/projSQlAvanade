@@ -5,6 +5,7 @@ import com.sqlproject.exceptions.*;
 import com.sqlproject.persistence.entity.Card;
 import com.sqlproject.persistence.entity.Status;
 import com.sqlproject.service.CardService;
+import com.sqlproject.service.CardServiceImpl;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,9 +15,9 @@ public class CardUI {
     private final CardService cardService;
     private final Scanner scanner;
 
-    public CardUI(CardService cardService) {
-        this.cardService = cardService;
-        this.scanner = new Scanner(System.in);
+    public CardUI(Scanner scanner) throws SQLException{
+        this.cardService = new CardServiceImpl();
+        this.scanner = scanner;
     }
 
     public void start() {
@@ -92,28 +93,17 @@ public class CardUI {
         System.out.println("5 - BLOCKED");
         int statusChoice = readIntegerInput("Escolha o status (1-5): ");
 
-        Status status;
-        switch (statusChoice) {
-            case 1:
-                status = Status.TODO;
-                break;
-            case 2:
-                status = Status.IN_PROGRESS;
-                break;
-            case 3:
-                status = Status.DONE;
-                break;
-            case 4:
-                status = Status.CANCELED;
-                break;
-            case 5:
-                status = Status.BLOCKED;
-                break;
-            default:
+        Status status = switch (statusChoice) {
+            case 1 -> Status.TODO;
+            case 2 -> Status.IN_PROGRESS;
+            case 3 -> Status.DONE;
+            case 4 -> Status.CANCELED;
+            case 5 -> Status.BLOCKED;
+            default -> {
                 System.out.println("Opção inválida. Usando TODO como padrão.");
-                status = Status.TODO;
-                break;
-        }
+                yield Status.TODO;
+            }
+        };
 
         Long boardId = readLongInput("ID do Board: ");
 
@@ -168,7 +158,7 @@ public class CardUI {
                 System.out.println("------------------------------------------------------------------");
 
                 for (Card card : cards) {
-                    System.out.printf("%-5d %-30s %-15s %-20s%n",
+                    System.out.printf("%-5d %-30s %-15s %-20s %-20s %-20s%n",
                             card.getId(),
                             card.getTitle(),
                             card.getDescription(),

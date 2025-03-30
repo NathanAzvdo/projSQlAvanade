@@ -12,11 +12,11 @@ import java.util.List;
 public class BlockServiceImpl implements BlockService {
 
     private final BlockDAO blockDAO;
-    private final CardDAO cardDAO; // Para verificar se o card existe
+    private final CardDAO cardDAO;
 
-    public BlockServiceImpl(BlockDAO blockDAO, CardDAO cardDAO) {
-        this.blockDAO = blockDAO;
-        this.cardDAO = cardDAO;
+    public BlockServiceImpl() throws SQLException {
+        this.blockDAO = new BlockDAO();
+        this.cardDAO = new CardDAO();
     }
 
     @Override

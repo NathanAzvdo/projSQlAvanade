@@ -11,8 +11,8 @@ public class BoardColumnServiceImpl implements BoardColumnService {
 
     private final BoardColumnDAO boardColumnDAO;
 
-    public BoardColumnServiceImpl(BoardColumnDAO boardColumnDAO) {
-        this.boardColumnDAO = boardColumnDAO;
+    public BoardColumnServiceImpl() throws SQLException {
+        this.boardColumnDAO = new BoardColumnDAO();
     }
 
     @Override

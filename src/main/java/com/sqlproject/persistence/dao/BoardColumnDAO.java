@@ -1,6 +1,7 @@
 package com.sqlproject.persistence.dao;
 
 import com.sqlproject.persistence.config.ConnectionConfig;
+import com.sqlproject.persistence.entity.Board;
 import com.sqlproject.persistence.entity.BoardColumn;
 
 
@@ -48,20 +49,25 @@ public class BoardColumnDAO {
 
     public List<BoardColumn> getColumnByBoardId(Long boardId) throws SQLException {
         List<BoardColumn> columns = new ArrayList<>();
-        String sql = "SELECT * FROM board_column WHERE board_id = ? ORDER BY column_order";
+        String sql = "SELECT id, name, column_order, kind, board_id FROM board_column WHERE board_id = ? ORDER BY column_order";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setLong(1, boardId);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
-                    columns.add(new BoardColumn(
+                    Board board = new Board();
+                    board.setId(rs.getLong("board_id")); // Cria um objeto Board com o ID correto
+
+                    BoardColumn column = new BoardColumn(
                             rs.getLong("id"),
                             rs.getString("name"),
                             rs.getInt("column_order"),
                             rs.getString("kind"),
-                            null
-                    ));
+                            board // Agora o board não será mais null
+                    );
+
+                    columns.add(column);
                 }
             }
         } catch (SQLException e) {
@@ -70,6 +76,7 @@ public class BoardColumnDAO {
 
         return columns;
     }
+
     public void updateColumnOrder(Long columnId, int newOrder) throws SQLException {
         String sql = "UPDATE board_column SET column_order = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
