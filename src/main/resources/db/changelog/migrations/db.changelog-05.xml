@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <!-- Procedure para alterar o status do card para IN_PROGRESS quando for desbloqueado -->
+    <changeSet id="8" author="junior">
+        <comment>Criar procedure para alterar status do card para IN_PROGRESS quando desbloqueado</comment>
+        <sql endDelimiter="//">
+            CREATE PROCEDURE update_card_to_in_progress_on_unblock(IN card_id_param BIGINT UNSIGNED)
+            BEGIN
+                UPDATE card
+                SET status = 'IN_PROGRESS'
+                WHERE id = card_id_param;
+            END//
+        </sql>
+        <rollback>
+            <sql>DROP PROCEDURE IF EXISTS update_card_to_in_progress_on_unblock;</sql>
+        </rollback>
+    </changeSet>
+
+    <!-- Trigger que monitora atualizações na tabela block, especificamente quando unblock_in é preenchido -->
+    <changeSet id="9" author="junior">
+        <comment>Criar trigger para atualizar status do card para IN_PROGRESS quando houver desbloqueio</comment>
+        <sql endDelimiter="//">
+            CREATE TRIGGER after_block_unblock
+            AFTER UPDATE ON block
+            FOR EACH ROW
+            BEGIN
+                IF NEW.unblock_in IS NOT NULL AND OLD.unblock_in IS NULL THEN
+                    CALL update_card_to_in_progress_on_unblock(NEW.card_id);
+                END IF;
+            END//
+        </sql>
+        <rollback>
+            <sql>DROP TRIGGER IF EXISTS after_block_unblock;</sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
